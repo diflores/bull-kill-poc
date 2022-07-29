@@ -1,5 +1,6 @@
 const Queue = require('bull');
 const kill = require('tree-kill');
+const REDIS_URL = require('./consts');
 
 const MAX_TTL = 5000;
 const CONCURRENCY = 2;
@@ -45,7 +46,7 @@ function checkIfJobsToKill(myQueue) {
 }
 
 function createQueue() {
-  const myQueue = new Queue('myQueue', 'redis://localhost:6379');
+  const myQueue = new Queue('myQueue', REDIS_URL);
   myQueue.process(CONCURRENCY, `${__dirname}/process.js`);
   myQueue.on('active', () => checkIfJobsToKill(myQueue));
   myQueue.on('failed', (job) => console.log('Job failed', job.id, job.stacktrace));
