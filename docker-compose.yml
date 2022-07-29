@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  queue:
+    build: .
+    command: [ "node", "queue.js" ]
+    environment:
+      - REDIS_URL=redis://redis:6379
+    links:
+      - redis
+  main:
+    build: .
+    command: [ "node", "main.js" ]
+    environment:
+      - REDIS_URL=redis://redis:6379
+    links:
+      - redis
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
