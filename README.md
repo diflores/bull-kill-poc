@@ -9,8 +9,8 @@ I made a simple POC for killing Bull jobs using [Alexander Lolis implementation]
 ### Without Docker
 
 1. Run `npm install`.
-2. Start the queue in one terminal: `node queue.js`.
-3. Run the main process in another terminal: `node main.js`.
+2. Start the queue in one terminal: `node src/queue.js`.
+3. Run the main process in another terminal: `node src/main.js`.
 
 ### With Docker
 1. Run `docker-compose up`.
